@@ -10,6 +10,48 @@
 <h1>Resemblejs</h1>
 <button style="width: 100%; text-align: center" id="execute">Generar Reporte</button>
 
+{% if  reports.count > 0 %}
+    {% for  report in reports %}
+        <table>
+            <thead>
+            <th>
+                Fecha
+            </th>
+            <th>
+                Imagen 1
+            </th>
+            <th>
+                Imagen 2
+            </th>
+            <th>
+                Proceso
+            </th>
+            </thead>
+            <tr>
+                <td>{{ report.created_at }}</td>
+                <td><img src="/media/{{  report.first_image }}" width="300px"></td>
+                <td><img src="/media/{{  report.second_image }}" width="300px"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <code>
+                        {{ report.report_info }}
+                    </code>
+                </td>
+            </tr>
+        </table>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+    {% endfor %}
+{% else %}
+    <h2>No hay reportes disponibles</h2>
+{% endif %}
+
+
+
 <script type="application/javascript">
     var csrf_token = "{{ csrf_token }}";
     var process_url = "{% url 'process_resemblejs' %}";
