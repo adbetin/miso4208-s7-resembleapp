@@ -1,2 +1,2 @@
-release: cd cypress & npm i cypress --save-dev
+release: python manage.py collectstatic
 web: gunicorn ResembleJSTest.wsgi
